@@ -1,0 +1,23 @@
+version: '3.1'
+
+services:
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "80:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+      - ./custom.ini:/etc/grafana/grafana.ini
+      - ./speed.csv:/var/lib/grafana/speed.csv:ro
+      - ./ping.csv:/var/lib/grafana/ping.csv:ro
+      - ./curl.csv:/var/lib/grafana/curl.csv:ro  
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_PLUGINS_ALLOW_LOCAL_MODE=true
+      - GF_INSTALL_PLUGINS=marcusolsson-csv-datasource
+      - GF_USERS_DEFAULT_THEME=light
+
+volumes:
+  grafana-storage:

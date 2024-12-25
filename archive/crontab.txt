@@ -1,0 +1,4 @@
+crontab -e
+7,10,15,20,25,27,35,40,45,50,55,58 * * * * /usr/bin/python3 /home/admin/speed.py >> /home/admin/speed.log
+* * * * * /usr/bin/python3 /home/admin/ping.py
+* * * * * /usr/bin/python3 /home/admin/curl.py
